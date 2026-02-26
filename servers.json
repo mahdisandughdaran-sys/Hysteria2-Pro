@@ -1,0 +1,16 @@
+[
+  {
+    "name": "🇩🇪 آلمان - مخابرات",
+    "server": "192.168.1.10",
+    "password": "my-super-secret-pass-1",
+    "obfs": "salamander-pass-1",
+    "sni": "www.bing.com"
+  },
+  {
+    "name": "🇫🇷 فرانسه - ایرانسل",
+    "server": "fr.my-domain.com",
+    "password": "my-super-secret-pass-2",
+    "obfs": "salamander-pass-2",
+    "sni": "www.yahoo.com"
+  }
+]
