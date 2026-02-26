@@ -1,0 +1,32 @@
+[
+  {
+    "name": "🇩🇪 DE-01",
+    "server": "de01.yourdomain.com",
+    "password": "CHANGE_ME_TO_REAL_PASSWORD_1",
+    "sni": "de01.yourdomain.com",
+    "alpn": ["h3", "h2", "http/1.1"],
+    "allow_insecure": false,
+    "udp": true,
+    "fingerprint": "chrome"
+  },
+  {
+    "name": "🇺🇸 US-01",
+    "server": "us01.yourdomain.com",
+    "password": "CHANGE_ME_TO_REAL_PASSWORD_2",
+    "sni": "us01.yourdomain.com",
+    "alpn": ["h3", "h2"],
+    "allow_insecure": false,
+    "udp": true,
+    "fingerprint": "chrome"
+  },
+  {
+    "name": "🇳🇱 NL-01",
+    "server": "nl01.yourdomain.com",
+    "password": "CHANGE_ME_TO_REAL_PASSWORD_3",
+    "sni": "nl01.yourdomain.com",
+    "alpn": ["h2", "http/1.1"],
+    "allow_insecure": false,
+    "udp": true,
+    "fingerprint": "random"
+  }
+]
