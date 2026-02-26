@@ -1,0 +1,2 @@
+hysteria2://my-super-secret-pass-1@192.168.1.10:443/?obfs=salamander&obfs-password=salamander-pass-1&sni=www.bing.com&insecure=0#%F0%9F%87%A9%F0%9F%87%AA%20%D8%A2%D9%84%D9%85%D8%A7%D9%86%20-%20%D9%85%D8%AE%D8%A7%D8%A8%D8%B1%D8%A7%D8%AA
+hysteria2://my-super-secret-pass-2@fr.my-domain.com:443/?obfs=salamander&obfs-password=salamander-pass-2&sni=www.yahoo.com&insecure=0#%F0%9F%87%AB%F0%9F%87%B7%20%D9%81%D8%B1%D8%A7%D9%86%D8%B3%D9%87%20-%20%D8%A7%DB%8C%D8%B1%D8%A7%D9%86%D8%B3%D9%84

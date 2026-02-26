@@ -1,0 +1,141 @@
+{
+  "log": {
+    "level": "warn",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "google",
+        "address": "tls://8.8.8.8",
+        "detour": "selector"
+      },
+      {
+        "tag": "local",
+        "address": "local"
+      }
+    ],
+    "rules": [
+      {
+        "outbound": "any",
+        "server": "local"
+      },
+      {
+        "geosite": "category-ads-all",
+        "server": "local"
+      },
+      {
+        "geosite": "cn",
+        "server": "local"
+      },
+      {
+        "geosite": "private",
+        "server": "local"
+      }
+    ],
+    "final": "google"
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "tun0",
+      "stack": "system",
+      "address": [
+        "172.19.0.1/30",
+        "fdfe:dcba:9876::1/126"
+      ],
+      "mtu": 9000,
+      "auto_route": true,
+      "strict_route": true,
+      "sniff": true
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "selector",
+      "outbounds": [
+        "hy2-1",
+        "hy2-2"
+      ],
+      "default": "hy2-1"
+    },
+    {
+      "type": "hysteria2",
+      "tag": "hy2-1",
+      "server": "192.168.1.10",
+      "server_ports": [
+        "443",
+        "8000:9000"
+      ],
+      "password": "my-super-secret-pass-1",
+      "up_mbps": 100,
+      "down_mbps": 100,
+      "obfs": {
+        "type": "salamander",
+        "password": "salamander-pass-1"
+      },
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": false
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "hy2-2",
+      "server": "fr.my-domain.com",
+      "server_ports": [
+        "443",
+        "8000:9000"
+      ],
+      "password": "my-super-secret-pass-2",
+      "up_mbps": 100,
+      "down_mbps": 100,
+      "obfs": {
+        "type": "salamander",
+        "password": "salamander-pass-2"
+      },
+      "tls": {
+        "enabled": true,
+        "server_name": "www.yahoo.com",
+        "insecure": false
+      }
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "protocol": "dns",
+        "outbound": "dns-out"
+      },
+      {
+        "geosite": "category-ads-all",
+        "outbound": "block"
+      },
+      {
+        "geosite": "cn",
+        "outbound": "direct"
+      },
+      {
+        "geosite": "private",
+        "outbound": "direct"
+      }
+    ],
+    "final": "selector",
+    "auto_detect_interface": true
+  }
+}
