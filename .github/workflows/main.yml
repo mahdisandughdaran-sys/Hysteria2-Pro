@@ -1,0 +1,42 @@
+name: Hysteria2 Auto Config Generator
+
+on:
+  push:
+    paths:
+      - 'servers.json'
+      - 'hys_generator.py'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install qrcode[pil]
+
+      - name: Run Generator (URLTest Mode)
+        run: python hys_generator.py --mode urltest
+
+      - name: Run Generator (Selector Mode)
+        run: python hys_generator.py --mode selector --output configs_manual
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add configs/ configs_manual/
+          git commit -m "✅ Auto-generated Hysteria2 configs & QR Codes" || echo "No changes to commit"
+          git push
